@@ -1,11 +1,8 @@
 package com.dyf.easyexcel.read;
 
 import com.alibaba.excel.EasyExcel;
-import com.alibaba.excel.ExcelReader;
-import com.alibaba.excel.read.listener.PageReadListener;
-import com.alibaba.excel.read.metadata.ReadSheet;
 import com.dyf.easyexcel.dao.DemoDao;
-import javafx.scene.media.VideoTrack;
+import com.dyf.easyexcel.model.DemoData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,11 +44,7 @@ public class TestRead {
     public void test() throws FileNotFoundException {
         System.out.println(demoDao);
         File file = ResourceUtils.getFile("classpath:demo.xlsx");
-//        EasyExcel.read(file, DemoData.class, new PageReadListener<DemoData>(dataList -> {
-//            dataList.forEach(System.out::println);
-//        }, 2)).sheet().doRead();
-
-        EasyExcel.read(file, DemoData.class, new DemoDataListener(demoDao)).sheet(0).doRead();
+        EasyExcel.read(file, DemoData.class, new DemoDataListener(demoDao)).sheet().doRead();
 
 
     }

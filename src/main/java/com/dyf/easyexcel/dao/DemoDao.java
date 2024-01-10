@@ -1,6 +1,6 @@
 package com.dyf.easyexcel.dao;
 
-import com.dyf.easyexcel.read.DemoData;
+import com.dyf.easyexcel.model.DemoData;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
