@@ -5,6 +5,8 @@ import com.alibaba.excel.metadata.CellExtra;
 import com.alibaba.excel.metadata.data.ReadCellData;
 import com.alibaba.excel.read.listener.ReadListener;
 import com.alibaba.excel.util.ListUtils;
+import com.dyf.easyexcel.dao.DemoDao;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,10 @@ import java.util.Map;
  * @date 2024/1/10
  */
 public class DemoDataListener implements ReadListener<DemoData> {
+
+    private final DemoDao demoDao;
+
+
     /**
      * 单次缓存的数据量
      */
@@ -22,6 +28,10 @@ public class DemoDataListener implements ReadListener<DemoData> {
      * 临时存储
      */
     private List<DemoData> cachedDataList = ListUtils.newArrayListWithExpectedSize(BATCH_COUNT);
+
+    public DemoDataListener(DemoDao demoDao) {
+        this.demoDao = demoDao;
+    }
 
     @Override
     public void invoke(DemoData data, AnalysisContext analysisContext) {
@@ -34,7 +44,8 @@ public class DemoDataListener implements ReadListener<DemoData> {
     }
 
     private void saveData() {
-        System.out.println("保存数据: " + cachedDataList.size() + "----" + cachedDataList);
+        demoDao.saveData(cachedDataList);
+//        System.out.println("保存数据: " + cachedDataList.size() + "----" + cachedDataList);
     }
 
     @Override
@@ -45,7 +56,7 @@ public class DemoDataListener implements ReadListener<DemoData> {
 
     @Override
     public void onException(Exception exception, AnalysisContext context) throws Exception {
-        System.out.println("onException");
+        System.out.println("onException: " + cachedDataList);
     }
 
     @Override
@@ -62,6 +73,5 @@ public class DemoDataListener implements ReadListener<DemoData> {
     public boolean hasNext(AnalysisContext context) {
         return ReadListener.super.hasNext(context);
     }
-
 
 }
