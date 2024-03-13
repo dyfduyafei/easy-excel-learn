@@ -1,4 +1,4 @@
-package com.dyf.easyexcel.model;
+package com.dyf.easyexcel.demo.model;
 
 import lombok.Data;
 

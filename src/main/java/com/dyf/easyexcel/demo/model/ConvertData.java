@@ -1,9 +1,9 @@
-package com.dyf.easyexcel.model;
+package com.dyf.easyexcel.demo.model;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.alibaba.excel.annotation.format.NumberFormat;
-import com.dyf.easyexcel.read.convert.CustomGenderConvert;
+import com.dyf.easyexcel.demo.read.convert.CustomGenderConvert;
 import lombok.Data;
 
 

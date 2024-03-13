@@ -1,11 +1,11 @@
-package com.dyf.easyexcel.write;
+package com.dyf.easyexcel.demo.write;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.util.ListUtils;
 import com.alibaba.excel.write.metadata.WriteSheet;
-import com.dyf.easyexcel.model.DemoData;
-import com.dyf.easyexcel.model.DemoWriteData;
+import com.dyf.easyexcel.demo.model.DemoData;
+import com.dyf.easyexcel.demo.model.DemoWriteData;
 
 import java.io.FileNotFoundException;
 import java.util.Date;
@@ -35,7 +35,9 @@ public class TestWrite {
 
         try (ExcelWriter excelWriter = EasyExcel.write(fileName, DemoData.class).build()) {
             WriteSheet writeSheet = EasyExcel.writerSheet("模板3").build();
+            WriteSheet writeSheet2 = EasyExcel.writerSheet("模板2").build();
             excelWriter.write(data(10), writeSheet);
+            excelWriter.write(data(10), writeSheet2);
         }
 
     }

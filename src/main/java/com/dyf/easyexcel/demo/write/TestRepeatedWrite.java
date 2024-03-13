@@ -1,9 +1,9 @@
-package com.dyf.easyexcel.write;
+package com.dyf.easyexcel.demo.write;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
-import com.dyf.easyexcel.model.DemoData;
+import com.dyf.easyexcel.demo.model.DemoData;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -27,11 +27,11 @@ public class TestRepeatedWrite {
 //            }
 //        }
 
-        try (ExcelWriter excelWriter = EasyExcel.write(fileName, DemoData.class).build()) {
+        try (ExcelWriter excelWriter = EasyExcel.write(fileName).build()) {
             for (int i = 0; i < 5; i++) {
                 WriteSheet writeSheet = EasyExcel.writerSheet(i, i + "--写到不同的sheet").build();
                 excelWriter.write(
-                        TestWrite.data(1000)
+                        TestWrite.data(i)
                         , writeSheet);
             }
         }
